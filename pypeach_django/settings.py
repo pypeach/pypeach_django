@@ -13,8 +13,9 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+from pypeach_django import app_config
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -26,7 +27,6 @@ SECRET_KEY = '6nzj-eo*nj$@9t1pgu%-=s4$n63&e6u+^avv4x0b9sj+tj@=&_'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -71,7 +71,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'pypeach_django.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
@@ -81,7 +80,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -101,22 +99,62 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ja'
 
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_L10N = True
+TIME_ZONE = 'Asia/Tokyo'
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Localeのパス設定を行う
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
+
+# loggerの設定を行う
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'consoleHandler': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'customFormatter'
+        },
+        'fileRotatingHandler': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'formatter': 'customFormatter',
+            'filename': app_config.get_log_file(),
+            'encoding': 'utf8',
+            'when': 'D',
+            'interval': 1,
+            'backupCount': 7
+        }
+    },
+    'formatters': {
+        'customFormatter': {
+            'format': '[%(asctime)s] %(levelname)s - %(filename)s#%(funcName)s:%(lineno)d: %(message)s',
+            'datefmt': '%Y/%m/%d %H:%M:%S',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['consoleHandler', 'fileRotatingHandler'],
+            'level': app_config.get_logging_level_config(),
+            'propagate': False,
+        },
+        'django.db.backends': {
+            'handlers': ['consoleHandler'],
+            'level': app_config.get_logging_level_config(),
+            'propagate': False,
+        }
+    }
+}

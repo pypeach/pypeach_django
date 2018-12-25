@@ -1,0 +1,49 @@
+import gettext
+import logging
+
+from django.core.management.base import BaseCommand
+from django.db import ProgrammingError
+from django.utils.translation import gettext
+
+"""
+BaseCommandを継承したバッチ起動クラスです。
+"""
+__author__ = "t.ebinuma"
+__version__ = "1.0"
+__date__ = "25 December 2018"
+
+
+class Command(BaseCommand):
+
+    def add_arguments(self, parser):
+        """
+        引数をセットする
+        """
+        parser.add_argument('parameter', nargs='+', type=str)
+
+    def handle(self, *args, **options):
+        """
+        コマンド実行時のハンドラ。
+        引数に応じて各サービスを実行する
+        """
+        execute_batch = None
+        execute_type = None
+
+        for index, parameter in enumerate(options['parameter']):
+            if index == 0:
+                execute_batch = parameter
+
+        logging.debug("test")
+        logging.info(gettext("I900"), execute_batch)
+
+        try:
+            if execute_batch == 'test':
+                pass
+            else:
+                logging.info(gettext("E902"), execute_batch)
+        except ProgrammingError as e:
+            logging.exception(gettext("E901"), e)
+        except Exception as e:
+            logging.exception(gettext("E990"), e)
+
+        logging.info(gettext("I901"), execute_batch)
