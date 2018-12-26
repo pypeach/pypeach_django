@@ -64,9 +64,10 @@ pythonのモジュールはpipで適宜インストールを行います。
 
 |  モジュール | 用途 |
 |:------------|:------------|
-| Django |フレームワーク |
-| lxml/yaml |設定ファイルの読込等 |
-| mysqlclient  | mysqlドライバー |
+| Django | フレームワーク |
+| lxml＆yaml | 設定ファイルの読込等 |
+| mysqlclient | mysqlドライバ |
+
 
 freezeで出力したテキスト(requirements.txt)を使用して以下のコマンドでインストールできます。
 ```
