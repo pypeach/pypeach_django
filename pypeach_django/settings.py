@@ -75,10 +75,21 @@ WSGI_APPLICATION = 'pypeach_django.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db', 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': app_config.get_properties("database_name"),
+        'USER': app_config.get_properties("database_user"),
+        'PASSWORD': app_config.get_properties("database_password"),
+        'HOST': app_config.get_properties("database_host"),
+        'PORT': app_config.get_properties("database_port"),
+        'OPTIONS': {
+            'charset': 'utf8mb4'
+        },
+        'TEST': {
+            'NAME': app_config.get_properties("test_database_name"),
+        }
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

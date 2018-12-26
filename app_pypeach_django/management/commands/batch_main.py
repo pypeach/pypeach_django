@@ -27,18 +27,16 @@ class Command(BaseCommand):
         引数に応じて各サービスを実行する
         """
         execute_batch = None
-        execute_type = None
 
         for index, parameter in enumerate(options['parameter']):
             if index == 0:
                 execute_batch = parameter
 
-        logging.debug("test")
         logging.info(gettext("I900"), execute_batch)
 
         try:
-            if execute_batch == 'test':
-                pass
+            if execute_batch == 'test_service':
+                logging.debug("テストサービスを起動します")
             else:
                 logging.info(gettext("E902"), execute_batch)
         except ProgrammingError as e:

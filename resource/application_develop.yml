@@ -3,7 +3,15 @@
 ##################################################
 # ログファイルのディレクトリパス
 log_path: C:\work\30.mocjax\log\
-# ログファイル
-log_file: virgo_batch.log
-# ログファイルの保管数
-log_file_backup_count: 30
+# ログファイル名
+log_file: pypeach_django.log
+
+##################################################
+## DB接続のプロパティ
+##################################################
+database_user: pypeach_django
+database_password: pypeach_django
+database_host: localhost
+database_name: pypeach_django
+database_port: 3306
+test_database_name: test_pypeach_django
