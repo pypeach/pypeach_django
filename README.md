@@ -73,6 +73,15 @@ freezeで出力したテキスト(requirements.txt)を使用して以下のコ�
 ```
 # pipコマンドを実行する
 pip install -r requirements.txt
+
+# txtの中身は以下になります
+beautifulsoup4==4.6.0
+Django==2.1
+django-admin-tools==0.8.1
+django-bootstrap-form==3.3
+lxml==4.0.0
+mysqlclient==1.3.12
+PyYAML==3.12
 ```
 
 ### DB作成
