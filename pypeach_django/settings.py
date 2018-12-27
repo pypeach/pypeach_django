@@ -14,6 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 from pypeach_django import app_config
+from pypeach_django.app_config import AppConfig
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -77,16 +78,16 @@ WSGI_APPLICATION = 'pypeach_django.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': app_config.get_properties("database_name"),
-        'USER': app_config.get_properties("database_user"),
-        'PASSWORD': app_config.get_properties("database_password"),
-        'HOST': app_config.get_properties("database_host"),
-        'PORT': app_config.get_properties("database_port"),
+        'NAME': AppConfig.get_properties("database_name"),
+        'USER': AppConfig.get_properties("database_user"),
+        'PASSWORD': AppConfig.get_properties("database_password"),
+        'HOST': AppConfig.get_properties("database_host"),
+        'PORT': AppConfig.get_properties("database_port"),
         'OPTIONS': {
             'charset': 'utf8mb4'
         },
         'TEST': {
-            'NAME': app_config.get_properties("test_database_name"),
+            'NAME': AppConfig.get_properties("test_database_name"),
         }
     }
 }
@@ -143,7 +144,7 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.handlers.TimedRotatingFileHandler',
             'formatter': 'customFormatter',
-            'filename': app_config.get_log_file(),
+            'filename': AppConfig.get_log_file(),
             'encoding': 'utf8',
             'when': 'D',
             'interval': 1,
@@ -159,12 +160,12 @@ LOGGING = {
     'loggers': {
         '': {
             'handlers': ['consoleHandler', 'fileRotatingHandler'],
-            'level': app_config.get_logging_level_config(),
+            'level': AppConfig.get_logging_level_config(),
             'propagate': False,
         },
         'django.db.backends': {
             'handlers': ['consoleHandler'],
-            'level': app_config.get_logging_level_config(),
+            'level': AppConfig.get_logging_level_config(),
             'propagate': False,
         }
     }
