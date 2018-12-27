@@ -1,6 +1,6 @@
 # pypeach_django
 ## はじめに
-djangoのサンプルアプリケーションです。  
+djangoを使用してバッチ処理を行うサンプルアプリケーションです。  
 
 ### 前提事項
 サンプルアプリケーションの動作環境は以下となります。
@@ -69,7 +69,7 @@ pythonのモジュールはpipで適宜インストールを行います。
 | mysqlclient | mysqlドライバ |
 
 
-freezeで出力したテキスト(requirements.txt)を使用して以下のコマンドでインストールできます。
+テキスト(freezeで作成)を使用して以下のコマンドでインストールできます。
 ```
 # pipコマンドを実行する
 pip install -r requirements.txt
