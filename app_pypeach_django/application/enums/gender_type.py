@@ -1,7 +1,5 @@
 from enum import Enum
 
-from django.utils.translation import gettext
-
 """
 性別のEnum
 """
