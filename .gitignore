@@ -1,0 +1,7 @@
+.idea/
+venv/
+*.pyc
+django.mo
+inspectdb_list.txt
+.pytest_cache/
+migrations/
