@@ -73,6 +73,7 @@ WSGI_APPLICATION = 'pypeach_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# DBの接続情報を設定する
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',

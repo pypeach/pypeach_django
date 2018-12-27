@@ -33,7 +33,7 @@ def get_log_file():
 
 def get_application_config():
     """
-    ホスト名から設定ファイルの読み込み先を取得する
+    OS情報やホスト名から設定ファイルの読み込み先を取得する
     """
     application_config = "develop"
 
@@ -46,7 +46,7 @@ def get_application_config():
 
 def get_logging_level_config():
     """
-    ホスト名からログレベルを取得する
+    OS情報やホスト名からログレベルを取得する
     """
     logging_level = "DEBUG"
     # 実行環境に応じてログレベルを切り替える
