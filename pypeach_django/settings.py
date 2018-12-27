@@ -128,7 +128,7 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
-# loggerの設定を行う
+# loggingの設定を行う
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

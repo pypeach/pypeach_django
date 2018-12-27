@@ -5,6 +5,8 @@ from django.core.management.base import BaseCommand
 from django.db import ProgrammingError
 from django.utils.translation import gettext
 
+from app_pypeach_django.application.service.employees_service import EmployeesService
+
 """
 BaseCommandを継承したバッチ起動クラスです。
 """
@@ -35,8 +37,8 @@ class Command(BaseCommand):
         logging.info(gettext("I900"), execute_batch)
 
         try:
-            if execute_batch == 'test_service':
-                logging.debug("テストサービスを起動します")
+            if execute_batch == 'create_employees':
+                EmployeesService.create_employees()
             else:
                 logging.info(gettext("E902"), execute_batch)
         except ProgrammingError as e:
