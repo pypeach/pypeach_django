@@ -147,3 +147,15 @@ python {プロジェクトのホーム}/manage.py batch_main {起動パラメー
 {プロジェクトのホーム}/shell/execute_batch.sh {起動パラメータ}
 例） /home/pypeach_django/shell/execute_batch.sh test_service
 ```
+
+djangoTestは以下のように実行します。
+```
+# 環境変数を設定する
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$HOME/.pyenv/shims:$HOME/.pyenv/bin:$PATH"
+LANG=ja_JP.UTF-8
+export PYTHONPATH="$HOME/pypeach_django/"
+# testを実行する
+python {プロジェクトのホーム}/manage.py test --keepdb {テストクラス}
+例）python /home/pypeach_django/manage.py test --keepdb app_pypeach_django.test.test_date_helper
+```
