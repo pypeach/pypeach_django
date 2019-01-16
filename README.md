@@ -56,7 +56,7 @@ python等のソフトウェアを適宜インストールしてください。
 | Vagrant + VirtualBox | 「[Vagrant + VirtualBoxでWindows上に開発環境をサクッと構築する](https://qiita.com/ozawan/items/160728f7c6b10c73b97e)」参照 |
 | Vagrant(DNS設定)| 「[VagrantのゲストOSから名前解決できない件](https://saku.io/fix-dns-resolver-in-vagrant-vm/)」参照 |
 | python | 「[Python3.6.0をUbuntu16.04に導入する](https://qiita.com/Fendo181/items/912b65c4fcc3d701d53d)」参照 |
-| Jenkins | 「[JenkinsのフロントにApache httpdを立たせてプロキシ連携させる設定方法](https://weblabo.oscasierra.net/jenkins-apache-httpd-proxy/)」参照 |
+| Jenkins | 「[Ubuntu 12.04にJenkinsをインストールしてApacheでポート80で動かす](http://madroom-project.blogspot.com/2012/12/ubuntu-1204jenkinsapache80.html)」参照 |
 
 ### モジュールのインストール
 pythonのモジュールはpipで適宜インストールを行います。
