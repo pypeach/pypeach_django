@@ -88,6 +88,7 @@ mysqlのDBやユーザを作成します。
 ```
 # DBを作成する
 CREATE DATABASE pypeach CHARACTER SET utf8mb4;
+CREATE DATABASE test_pypeach CHARACTER SET utf8mb4;
 # ユーザを作成する
 CREATE USER 'pypeach'@'localhost' IDENTIFIED BY 'pypeach';
 # DBにユーザ権限を付与する
@@ -130,7 +131,7 @@ django-admin compilemessages -l ja
 set PYTHONPATH={プロジェクトのホーム}
 # アプリケーションを実行する
 python {プロジェクトのホーム}\manage.py batch_main {起動パラメータ}
-例）C:\pypeach_django\manage.py batch_main test_service
+例）C:\pypeach_django\manage.py batch_main create_employees
 ```
 【linux/macの場合】
 ```
@@ -141,11 +142,11 @@ LANG=ja_JP.UTF-8
 export PYTHONPATH="$HOME/pypeach_django/"
 # アプリケーションを実行する
 python {プロジェクトのホーム}/manage.py batch_main {起動パラメータ}
-例）python /home/pypeach_django/manage.py batch_main test_service
+例）python /home/pypeach/pypeach_django/manage.py batch_main create_employees
 
 # linuxの場合、shellコマンドを使用できるようにしました
 {プロジェクトのホーム}/shell/execute_batch.sh {起動パラメータ}
-例） /home/pypeach_django/shell/execute_batch.sh test_service
+例） /home/pypeach/pypeach_django/shell/execute_batch.sh create_employees
 ```
 
 djangoTestは以下のように実行します。
@@ -157,5 +158,5 @@ LANG=ja_JP.UTF-8
 export PYTHONPATH="$HOME/pypeach_django/"
 # testを実行する
 python {プロジェクトのホーム}/manage.py test --keepdb {テストクラス}
-例）python /home/pypeach_django/manage.py test --keepdb app_pypeach_django.test.test_date_helper
+例）python /home/pypeach/pypeach_django/manage.py test --keepdb app_pypeach_django.test.test_date_helper
 ```
