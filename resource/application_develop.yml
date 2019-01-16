@@ -9,9 +9,9 @@ log_file: pypeach_django.log
 ##################################################
 ## DB接続のプロパティ
 ##################################################
-database_user: pypeach_django
-database_password: pypeach_django
+database_user: pypeach
+database_password: pypeach
 database_host: localhost
-database_name: pypeach_django
+database_name: pypeach
 database_port: 3306
-test_database_name: test_pypeach_django
+test_database_name: test_pypeach

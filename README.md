@@ -4,7 +4,7 @@ djangoを使用してバッチ処理を行うサンプルアプリケーショ�
 
 ### 前提事項
 サンプルアプリケーションの動作環境は以下となります。
-windows及びlinux(CentOS7.2)で動作確認しています。  
+windows及びlinux(Ubuntu 18.04 LTS)で動作確認しています。  
 
 |  項目 | バージョン |
 |:------------|:------------|
@@ -55,8 +55,7 @@ python等のソフトウェアを適宜インストールしてください。
 |:------------|:------------|
 | Vagrant + VirtualBox | 「[Vagrant + VirtualBoxでWindows上に開発環境をサクッと構築する](https://qiita.com/ozawan/items/160728f7c6b10c73b97e)」参照 |
 | Vagrant(DNS設定)| 「[VagrantのゲストOSから名前解決できない件](https://saku.io/fix-dns-resolver-in-vagrant-vm/)」参照 |
-| python | 「[CentOSにPythonをインストールする](https://qiita.com/micheleno13/items/bd19dca20da97f3f056e)」参照 |
-| pip | 「[CentOS7 に pip と awscli をインストール](http://rriifftt.hatenablog.com/entry/2015/10/28/142043)」参照 |
+| python | 「[Python3.6.0をUbuntu16.04に導入する](https://qiita.com/Fendo181/items/912b65c4fcc3d701d53d)」参照 |
 | Jenkins | 「[JenkinsのフロントにApache httpdを立たせてプロキシ連携させる設定方法](https://weblabo.oscasierra.net/jenkins-apache-httpd-proxy/)」参照 |
 
 ### モジュールのインストール
@@ -88,11 +87,13 @@ PyYAML==3.12
 mysqlのDBやユーザを作成します。
 ```
 # DBを作成する
-CREATE DATABASE pypeach_django;
+CREATE DATABASE pypeach CHARACTER SET utf8mb4;
+CREATE DATABASE test_pypeach CHARACTER SET utf8mb4;
 # ユーザを作成する
-CREATE USER 'pypeach_django'@'localhost' IDENTIFIED BY 'pypeach_django';
+CREATE USER 'pypeach'@'localhost' IDENTIFIED BY 'pypeach';
 # DBにユーザ権限を付与する
-GRANT ALL ON pypeach_django.* TO 'pypeach_django'@'localhost';
+GRANT ALL ON pypeach.* TO 'pypeach'@'localhost';
+GRANT ALL ON test_pypeach.* TO 'pypeach'@'localhost';
 # 権限変更を反映する
 FLUSH PRIVILEGES;
 ```
@@ -111,7 +112,7 @@ python manage.py migrate
 ```
 
 ### メッセージ作成
-gettextを使用するためのメッセージを作成します。
+[gettext](https://www.howtoinstall.co/en/ubuntu/xenial/gettext)を使用するためのメッセージを作成します。
 
 ```
 # poファイルを作成する
@@ -130,7 +131,7 @@ django-admin compilemessages -l ja
 set PYTHONPATH={プロジェクトのホーム}
 # アプリケーションを実行する
 python {プロジェクトのホーム}\manage.py batch_main {起動パラメータ}
-例）C:\pypeach_django\manage.py batch_main test_service
+例）C:\pypeach_django\manage.py batch_main create_employees
 ```
 【linux/macの場合】
 ```
@@ -141,9 +142,21 @@ LANG=ja_JP.UTF-8
 export PYTHONPATH="$HOME/pypeach_django/"
 # アプリケーションを実行する
 python {プロジェクトのホーム}/manage.py batch_main {起動パラメータ}
-例）python /home/pypeach_django/manage.py batch_main test_service
+例）python /home/pypeach/pypeach_django/manage.py batch_main create_employees
 
 # linuxの場合、shellコマンドを使用できるようにしました
 {プロジェクトのホーム}/shell/execute_batch.sh {起動パラメータ}
-例） /home/pypeach_django/shell/execute_batch.sh test_service
+例） /home/pypeach/pypeach_django/shell/execute_batch.sh create_employees
+```
+
+djangoTestは以下のように実行します。
+```
+# 環境変数を設定する
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$HOME/.pyenv/shims:$HOME/.pyenv/bin:$PATH"
+LANG=ja_JP.UTF-8
+export PYTHONPATH="$HOME/pypeach_django/"
+# testを実行する
+python {プロジェクトのホーム}/manage.py test --keepdb {テストクラス}
+例）python /home/pypeach/pypeach_django/manage.py test --keepdb app_pypeach_django.test.test_date_helper
 ```
