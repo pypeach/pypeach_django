@@ -87,11 +87,12 @@ PyYAML==3.12
 mysqlのDBやユーザを作成します。
 ```
 # DBを作成する
-CREATE DATABASE pypeach_django CHARACTER SET utf8mb4;
+CREATE DATABASE pypeach CHARACTER SET utf8mb4;
 # ユーザを作成する
-CREATE USER 'pypeach_django'@'localhost' IDENTIFIED BY 'pypeach_django';
+CREATE USER 'pypeach'@'localhost' IDENTIFIED BY 'pypeach';
 # DBにユーザ権限を付与する
-GRANT ALL ON pypeach_django.* TO 'pypeach_django'@'localhost';
+GRANT ALL ON pypeach.* TO 'pypeach'@'localhost';
+GRANT ALL ON test_pypeach.* TO 'pypeach'@'localhost';
 # 権限変更を反映する
 FLUSH PRIVILEGES;
 ```
