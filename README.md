@@ -87,7 +87,7 @@ PyYAML==3.12
 mysqlのDBやユーザを作成します。
 ```
 # DBを作成する
-CREATE DATABASE pypeach_django;
+CREATE DATABASE pypeach_django CHARACTER SET utf8mb4;
 # ユーザを作成する
 CREATE USER 'pypeach_django'@'localhost' IDENTIFIED BY 'pypeach_django';
 # DBにユーザ権限を付与する
@@ -110,7 +110,7 @@ python manage.py migrate
 ```
 
 ### メッセージ作成
-gettextを使用するためのメッセージを作成します。
+[gettext](https://www.howtoinstall.co/en/ubuntu/xenial/gettext)を使用するためのメッセージを作成します。
 
 ```
 # poファイルを作成する
