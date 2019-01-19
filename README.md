@@ -8,7 +8,7 @@ windows及びlinux(Ubuntu 18.04 LTS)で動作確認しています。
 
 |  項目 | バージョン |
 |:------------|:------------|
-| python | 3.6.3 |
+| python | 3.6.7 |
 | mysql | 5.6.40 |
 
 
@@ -27,6 +27,7 @@ djangoプロジェクトのデフォルトに一部リソースのフォルダ�
   ├─log
   ├─pypeach_django
   ├─resources
+  ├─shell  
   ├─template  
   └─.gitignore等  
   
@@ -39,6 +40,7 @@ djangoプロジェクトのデフォルトに一部リソースのフォルダ�
 | locale| getTextで使用するメッセージを格納するフォルダ |
 | pypeach_django| django関連の設定を定義するフォルダ |
 | resources| 設定ファイルを格納するフォルダ |
+| shell| 起動シェルスクリプトを格納するフォルダ |
 | template| テンプレートファイル（メールテンプレート等）を格納するフォルダ |
 
 ## セットアップ
@@ -73,14 +75,18 @@ pythonのモジュールはpipで適宜インストールを行います。
 # pipコマンドを実行する
 pip install -r requirements.txt
 
-# txtの中身は以下になります
+# requirements.txtは以下になります
 beautifulsoup4==4.6.0
-Django==2.1
+Django==2.1.5
 django-admin-tools==0.8.1
-django-bootstrap-form==3.3
+django-bootstrap-form==3.4
 lxml==4.0.0
 mysqlclient==1.3.12
+pytz==2018.9
 PyYAML==3.12
+
+# 仮想環境を使用する場合はvenvコマンドで作成します
+python -m venv {任意の名称}
 ```
 
 ### DB作成
