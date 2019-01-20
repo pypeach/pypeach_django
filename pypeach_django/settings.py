@@ -92,7 +92,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -170,3 +169,9 @@ LOGGING = {
         }
     }
 }
+
+print(AppConfig.get_properties("database_name"))
+print(AppConfig.get_properties("database_user"))
+print(AppConfig.get_properties("database_password"))
+print(AppConfig.get_properties("database_host"))
+print(AppConfig.get_properties("database_port"))

@@ -23,8 +23,7 @@ class TestStringHelper(UnitTestBase):
         self.assertEqual(StringHelper.convert_string_to_float("4.00001"), 4.00001)
         self.assertEqual(StringHelper.convert_string_to_float("0"), 0)
         self.assertEqual(StringHelper.convert_string_to_float("-1.0"), -1.0)
-
-        self.assertNotEquals(StringHelper.convert_string_to_float("1.0"), 1.1)
+        self.assertNotEqual(StringHelper.convert_string_to_float("1.0"), 1.1)
 
     def test_convert_string_to_float_002(self):
         """
