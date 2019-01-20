@@ -40,6 +40,7 @@ class TestStringHelper(UnitTestBase):
         self.assertEqual(StringHelper.convert_string_to_int("4"), 4)
         self.assertEqual(StringHelper.convert_string_to_int("0"), 0)
         self.assertEqual(StringHelper.convert_string_to_int("-1"), -1)
+        self.assertEqual(StringHelper.convert_string_to_int("-1"), 0)
 
     def test_convert_string_to_date_002(self):
         """
