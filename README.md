@@ -68,6 +68,7 @@ pythonのモジュールはpipで適宜インストールを行います。
 | Django | フレームワーク |
 | lxml＆yaml | 設定ファイルの読込等 |
 | mysqlclient | mysqlドライバ |
+| pytest | unittest実行 |
 
 
 テキスト(freezeで作成)を使用して以下のコマンドでインストールできます。
@@ -80,10 +81,13 @@ beautifulsoup4==4.6.0
 Django==2.1.5
 django-admin-tools==0.8.1
 django-bootstrap-form==3.4
-lxml==4.0.0
+lxml==4.3.0
 mysqlclient==1.3.12
 pytz==2018.9
 PyYAML==3.12
+pytest==4.1.1
+pytest-cov==2.6.1
+pytest-django==3.4.5
 
 # 仮想環境を使用する場合はvenvコマンドで作成します
 python -m venv {任意の名称}
@@ -165,4 +169,9 @@ export PYTHONPATH="$HOME/pypeach_django/"
 # testを実行する
 python {プロジェクトのホーム}/manage.py test --keepdb {テストクラス}
 例）python /home/pypeach/pypeach_django/manage.py test --keepdb app_pypeach_django.test.test_date_helper
+
+# pytestを実行する(プロジェクトのホームで実行する)
+pytest --ds={プロジェクトの設定} --reuse-db --junitxml={テスト結果のxmlファイル名} {テスト対象パッケージ}
+例）pytest --ds=pypeach_django.settings --reuse-db --junitxml=unittest.xml app_pypeach_django/test
+
 ```
