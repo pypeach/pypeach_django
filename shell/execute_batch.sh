@@ -6,6 +6,6 @@ LANG=ja_JP.UTF-8
 
 export PYTHONPATH="$HOME/pypeach_django/"
 
-python /home/pypeach/pypeach_django/manage.py batch_main $1 $2
+python $PYTHONPATH/manage.py batch_main $1 $2
 
 exit 0

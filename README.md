@@ -8,7 +8,7 @@ windows及びlinux(Ubuntu 18.04 LTS)で動作確認しています。
 
 |  項目 | バージョン |
 |:------------|:------------|
-| python | 3.6.3 |
+| python | 3.6.7 |
 | mysql | 5.6.40 |
 
 
@@ -27,6 +27,7 @@ djangoプロジェクトのデフォルトに一部リソースのフォルダ�
   ├─log
   ├─pypeach_django
   ├─resources
+  ├─shell  
   ├─template  
   └─.gitignore等  
   
@@ -39,6 +40,7 @@ djangoプロジェクトのデフォルトに一部リソースのフォルダ�
 | locale| getTextで使用するメッセージを格納するフォルダ |
 | pypeach_django| django関連の設定を定義するフォルダ |
 | resources| 設定ファイルを格納するフォルダ |
+| shell| 起動シェルスクリプトを格納するフォルダ |
 | template| テンプレートファイル（メールテンプレート等）を格納するフォルダ |
 
 ## セットアップ
@@ -56,7 +58,7 @@ python等のソフトウェアを適宜インストールしてください。
 | Vagrant + VirtualBox | 「[Vagrant + VirtualBoxでWindows上に開発環境をサクッと構築する](https://qiita.com/ozawan/items/160728f7c6b10c73b97e)」参照 |
 | Vagrant(DNS設定)| 「[VagrantのゲストOSから名前解決できない件](https://saku.io/fix-dns-resolver-in-vagrant-vm/)」参照 |
 | python | 「[Python3.6.0をUbuntu16.04に導入する](https://qiita.com/Fendo181/items/912b65c4fcc3d701d53d)」参照 |
-| Jenkins | 「[JenkinsのフロントにApache httpdを立たせてプロキシ連携させる設定方法](https://weblabo.oscasierra.net/jenkins-apache-httpd-proxy/)」参照 |
+| Jenkins | 「[Ubuntu 12.04にJenkinsをインストールしてApacheでポート80で動かす](http://madroom-project.blogspot.com/2012/12/ubuntu-1204jenkinsapache80.html)」参照 |
 
 ### モジュールのインストール
 pythonのモジュールはpipで適宜インストールを行います。
@@ -66,6 +68,7 @@ pythonのモジュールはpipで適宜インストールを行います。
 | Django | フレームワーク |
 | lxml＆yaml | 設定ファイルの読込等 |
 | mysqlclient | mysqlドライバ |
+| pytest | unittest実行 |
 
 
 テキスト(freezeで作成)を使用して以下のコマンドでインストールできます。
@@ -73,14 +76,21 @@ pythonのモジュールはpipで適宜インストールを行います。
 # pipコマンドを実行する
 pip install -r requirements.txt
 
-# txtの中身は以下になります
+# requirements.txtは以下になります
 beautifulsoup4==4.6.0
-Django==2.1
+Django==2.1.5
 django-admin-tools==0.8.1
-django-bootstrap-form==3.3
-lxml==4.0.0
+django-bootstrap-form==3.4
+lxml==4.3.0
 mysqlclient==1.3.12
+pytz==2018.9
 PyYAML==3.12
+pytest==4.1.1
+pytest-cov==2.6.1
+pytest-django==3.4.5
+
+# 仮想環境を使用する場合はvenvコマンドで作成します
+python -m venv {任意の名称}
 ```
 
 ### DB作成
@@ -159,4 +169,9 @@ export PYTHONPATH="$HOME/pypeach_django/"
 # testを実行する
 python {プロジェクトのホーム}/manage.py test --keepdb {テストクラス}
 例）python /home/pypeach/pypeach_django/manage.py test --keepdb app_pypeach_django.test.test_date_helper
+
+# pytestを実行する(プロジェクトのホームで実行する)
+pytest --ds={プロジェクトの設定} --reuse-db --junitxml={テスト結果のxmlファイル名} {テスト対象パッケージ}
+例）pytest --ds=pypeach_django.settings --reuse-db --junitxml=unittest.xml app_pypeach_django/test
+
 ```
