@@ -38,3 +38,15 @@ class TestScrapyHelper(UnitTestBase):
             ScrapyHelper.get_html('http//example.com')
         with self.assertRaises(ScrapyIllegalException):
             ScrapyHelper.get_html('http//192.168.10.10')
+
+    def test_is_exists_class_name_001(self):
+        """
+        html内のclass有無を検証するテストケースです
+        """
+        html = ScrapyHelper.get_html('http://mocjax.com/example/scrape/', True)
+        logging.debug("html={}".format(html))
+
+        self.assertEqual(ScrapyHelper.is_exists_class_name(html, 'btn-lg'), True)
+        self.assertEqual(ScrapyHelper.is_exists_class_name(html, 'jumbotron'), True)
+        self.assertEqual(ScrapyHelper.is_exists_class_name(html, 'flex-column'), True)
+        self.assertEqual(ScrapyHelper.is_exists_class_name(html, 'jumbotron_01'), False)

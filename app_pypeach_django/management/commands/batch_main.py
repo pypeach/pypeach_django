@@ -6,6 +6,7 @@ from django.db import ProgrammingError
 from django.utils.translation import gettext
 
 from app_pypeach_django.application.service.employees_service import EmployeesService
+from app_pypeach_django.application.service.scrapy_service import ScrapyService
 
 """
 BaseCommandを継承したバッチ起動クラスです。
@@ -39,6 +40,10 @@ class Command(BaseCommand):
         try:
             if execute_batch == 'create_employees':
                 EmployeesService.create_employees()
+            if execute_batch == 'scrapy_html':
+                ScrapyService.scrapy_html()
+            if execute_batch == 'validate_html':
+                ScrapyService.validate_html()
             else:
                 logging.info(gettext("E902"), execute_batch)
         except ProgrammingError as e:

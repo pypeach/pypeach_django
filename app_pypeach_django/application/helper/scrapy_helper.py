@@ -51,7 +51,7 @@ class ScrapyHelper:
                 # HTTPError時のメッセージを出力する
                 logging.info(gettext("I801"), url, e.code, e.msg)
             except URLError as error:
-                # セッションタイムアウトを判定する
+                # タイムアウトを判定する
                 if isinstance(error.reason, socket.timeout):
                     logging.info(gettext("I802"), url)
                 else:

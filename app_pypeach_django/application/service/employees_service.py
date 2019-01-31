@@ -1,5 +1,5 @@
 """
-employeesを操作するクラスです。
+employeesテーブルを操作するクラスです。
 """
 
 from django.db import transaction
