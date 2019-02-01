@@ -40,14 +40,14 @@ class Command(BaseCommand):
         try:
             if execute_batch == 'create_employees':
                 EmployeesService.create_employees()
-            if execute_batch == 'create_scrapy_html':
+            elif execute_batch == 'create_scrapy_html':
                 ScrapyService.create_scrapy_html()
-            if execute_batch == 'parse_scrapy_html':
+            elif execute_batch == 'parse_scrapy_html':
                 ScrapyService.parse_scrapy_html()
             else:
                 logging.info(gettext("E902"), execute_batch)
         except ProgrammingError as e:
-            logging.exception(gettext("E902"), e)
+            logging.exception(gettext("E903"), e)
         except Exception as e:
             logging.exception(gettext("E990"), e)
 
