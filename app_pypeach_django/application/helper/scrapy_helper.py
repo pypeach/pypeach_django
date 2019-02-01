@@ -101,7 +101,7 @@ class ScrapyHelper:
 
 class HttpErrorException(Exception):
     """
-    Exception(404エラー)を定義する
+    Exception(httpエラー)を定義する
     """
     pass
 
