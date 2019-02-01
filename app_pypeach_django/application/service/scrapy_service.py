@@ -58,6 +58,13 @@ class ScrapyService(AppLogicBaseService):
             if ScrapyHelper.is_exists_class_name(html_lxml.select_one('a.btn.btn-primary'), 'btn-lg'):
                 logging.debug("exists class:btn-lg")
 
+            # アンカーのパラメータを取得する
+            for item_anchor in html_lxml.select('a'):
+                href = item_anchor.get('href')
+                logging.debug("item_href={}".format(href))
+                # アンカー内のパラメータ(id)の値を取得する。パラメータがない場合はNoneになる
+                logging.debug("id={}".format(ScrapyHelper.get_url_parameter(href, 'id')))
+
     def _regist_scrapy_html(self, url):
         """
         Webスクレイピングした結果をテーブルに登録する

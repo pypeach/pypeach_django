@@ -3,6 +3,7 @@ import logging
 import socket
 import urllib.request
 from urllib.error import HTTPError, URLError
+from urllib.parse import urlparse, parse_qs
 
 from bs4 import BeautifulSoup
 from django.utils.translation import gettext
@@ -78,6 +79,20 @@ class ScrapyHelper:
         except (KeyError, AttributeError):
             pass
         return is_exists_flag
+
+    @staticmethod
+    def get_url_parameter(url, parameter_name):
+        """
+        URLのパラメータ値を取得する
+        """
+        try:
+            url_parse = urlparse(url)
+            url_query = parse_qs(url_parse.query)
+            value = url_query[parameter_name][0]
+        except KeyError as e:
+            logging.debug(gettext("W801"), e)
+            return None
+        return value
 
 
 class HttpErrorException(Exception):

@@ -47,7 +47,7 @@ class Command(BaseCommand):
             else:
                 logging.info(gettext("E902"), execute_batch)
         except ProgrammingError as e:
-            logging.exception(gettext("E901"), e)
+            logging.exception(gettext("E902"), e)
         except Exception as e:
             logging.exception(gettext("E990"), e)
 
