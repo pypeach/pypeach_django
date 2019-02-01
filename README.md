@@ -68,7 +68,8 @@ pythonのモジュールはpipで適宜インストールを行います。
 | Django | フレームワーク |
 | lxml＆yaml | 設定ファイルの読込等 |
 | mysqlclient | mysqlドライバ |
-| pytest | unittest実行 |
+| pytest | unittest |
+| beautiful soup | Webスクレイピング |
 
 
 テキスト(freezeで作成)を使用して以下のコマンドでインストールできます。
