@@ -13,7 +13,6 @@ from pypeach_django.app_config import AppConfig
 """
 Scrapy関連の共通処理を定義する
 """
-
 __author__ = "t.ebinuma"
 __version__ = "1.0"
 __date__ = "31 January 2019"

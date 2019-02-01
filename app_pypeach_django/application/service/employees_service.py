@@ -1,7 +1,3 @@
-"""
-employeesテーブルを操作するクラスです。
-"""
-
 from django.db import transaction
 from django.utils import timezone
 from django.utils.timezone import localtime
@@ -10,6 +6,9 @@ from app_pypeach_django.application.enums.gender_type import GenderType
 from app_pypeach_django.application.service.app_logic_base_service import AppLogicBaseService
 from app_pypeach_django.models import Employees
 
+"""
+employeesテーブルを操作するクラスです。
+"""
 __author__ = "t.ebinuma"
 __version__ = "1.0"
 __date__ = "25 December 2018"

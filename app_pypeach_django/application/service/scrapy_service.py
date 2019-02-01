@@ -1,6 +1,3 @@
-"""
-Scrapyを行うクラスです。
-"""
 import logging
 
 from bs4 import BeautifulSoup
@@ -13,6 +10,9 @@ from app_pypeach_django.application.helper.scrapy_helper import ScrapyHelper
 from app_pypeach_django.application.service.app_logic_base_service import AppLogicBaseService
 from app_pypeach_django.models import ScrapyHtml
 
+"""
+Scrapyを行うクラスです。
+"""
 __author__ = "t.ebinuma"
 __version__ = "1.0"
 __date__ = "31 January 2019"
