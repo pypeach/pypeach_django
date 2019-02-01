@@ -16,3 +16,16 @@ class Employees(models.Model):
         db_table = 'employees'
         verbose_name = '社員情報'
         unique_together = ('emp_no',)
+
+
+class ScrapyHtml(models.Model):
+    execute_dt = models.CharField('実行日', max_length=8)
+    request_url = models.CharField('リクエストURL', max_length=256)
+    html_text = models.TextField('HTMLテキスト')
+    delete_flag = models.IntegerField('削除フラグ')
+    regist_dt = models.DateTimeField('登録日時', auto_now_add=True)
+    update_dt = models.DateTimeField('更新日時', auto_now_add=True)
+
+    class Meta:
+        db_table = 'scrapy_html'
+        verbose_name = 'WebスクレイピングHTML'

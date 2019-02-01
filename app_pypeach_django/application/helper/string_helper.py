@@ -1,13 +1,13 @@
 # coding:utf-8
 
-"""
-文字列関連の共通処理を定義する
-"""
 import logging
 import re
 
 from django.utils.translation import gettext
 
+"""
+文字列関連の共通処理を定義する
+"""
 __author__ = "t.ebinuma"
 __version__ = "1.0"
 __date__ = "23 April 2018"

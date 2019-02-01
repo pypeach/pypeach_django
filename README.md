@@ -68,7 +68,8 @@ pythonのモジュールはpipで適宜インストールを行います。
 | Django | フレームワーク |
 | lxml＆yaml | 設定ファイルの読込等 |
 | mysqlclient | mysqlドライバ |
-| pytest | unittest実行 |
+| pytest | unittest |
+| beautiful soup | Webスクレイピング |
 
 
 テキスト(freezeで作成)を使用して以下のコマンドでインストールできます。
@@ -166,7 +167,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$HOME/.pyenv/shims:$HOME/.pyenv/bin:$PATH"
 LANG=ja_JP.UTF-8
 export PYTHONPATH="$HOME/pypeach_django/"
-# testを実行する
+# testを実行する。DB定義を保持するため"--keepdb"のオプションを指定する
 python {プロジェクトのホーム}/manage.py test --keepdb {テストクラス}
 例）python /home/pypeach/pypeach_django/manage.py test --keepdb app_pypeach_django.test.test_date_helper
 

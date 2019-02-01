@@ -4,7 +4,6 @@ import datetime
 """
 日付関連の共通処理を定義する
 """
-
 __author__ = "t.ebinuma"
 __version__ = "1.0"
 __date__ = "28 April 2018"

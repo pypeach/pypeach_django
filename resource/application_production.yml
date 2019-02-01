@@ -15,3 +15,9 @@ database_host: localhost
 database_name: pypeach
 database_port: 3306
 test_database_name: test_pypeach
+
+##################################################
+## Scrapyのプロパティ
+##################################################
+url_request_retry_max_count: 3
+url_request_read_timeout: 10
