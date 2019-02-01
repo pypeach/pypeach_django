@@ -27,7 +27,7 @@ class ScrapyService(AppLogicBaseService):
 
     @staticmethod
     @transaction.atomic()
-    def scrapy_html():
+    def create_scrapy_html():
         """
         Webページにアクセスしてデータを作成する
         """
@@ -36,7 +36,7 @@ class ScrapyService(AppLogicBaseService):
 
     @staticmethod
     @transaction.atomic()
-    def validate_html():
+    def parse_scrapy_html():
         """
         Webページの結果から要素を抽出する
         """
@@ -46,11 +46,11 @@ class ScrapyService(AppLogicBaseService):
             # html→lxmlに変換して構文解析を行う
             html_text = item_scrapy_html.html_text
             html_lxml = BeautifulSoup(html_text, 'lxml')
-            # headingをすべて抽出する
+            # selectを使用してheadingをすべて抽出する
             for item_header in html_lxml.select('div.card-header > h4'):
                 logging.debug("header_text={}".format(item_header.text))
 
-            # body内のタイトルを先頭1件のみ抽出する
+            # select_oneを使用してbody内のタイトルを先頭1件のみ抽出する
             first_body = html_lxml.select_one('div.card-body > h1')
             logging.debug("item_header_text={}".format(first_body.text))
 
