@@ -24,7 +24,7 @@ class ScrapyHelper:
     @staticmethod
     def get_html(url, parse_flag=None):
         """
-        scrapyを行う
+        scrapyを行いhtmlを取得する
         """
         # User-Agentを定義する
         ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) ' \
@@ -43,7 +43,7 @@ class ScrapyHelper:
                 with urllib.request.urlopen(req, timeout=AppConfig.get_properties("url_request_read_timeout")) as f:
                     html = f.read().decode('utf-8')
 
-                # HTMLパーサーでパースする
+                # レスポンスをHTMLパーサーでパースする
                 if parse_flag is True:
                     response_html = BeautifulSoup(html, 'lxml')
                 else:
@@ -62,6 +62,7 @@ class ScrapyHelper:
                 logging.info(gettext("E991"), error)
                 raise ScrapyIllegalException(gettext("E990") % url)
 
+        # レスポンスがない場合はExceptionにする
         if response_html is None:
             error_msg = "{}:{}".format(gettext("E803"), url)
             raise HttpErrorException(error_msg)
@@ -74,9 +75,11 @@ class ScrapyHelper:
         """
         is_exists_flag = False
         try:
+            # class有無を判定する
             if len(html.select('.' + class_name)) > 0 or class_name in html["class"]:
                 is_exists_flag = True
         except (KeyError, AttributeError):
+            # エラーの場合はfalseを返却する
             pass
         return is_exists_flag
 
@@ -86,10 +89,12 @@ class ScrapyHelper:
         URLのパラメータ値を取得する
         """
         try:
+            # URLをパースして指定されたパラメータ名を取得する
             url_parse = urlparse(url)
             url_query = parse_qs(url_parse.query)
             value = url_query[parameter_name][0]
         except KeyError as e:
+            # エラーの場合はログを出力してNoneを返却する
             logging.debug(gettext("W801"), e)
             return None
         return value
