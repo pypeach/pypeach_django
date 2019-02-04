@@ -40,6 +40,8 @@ class Command(BaseCommand):
         try:
             if execute_batch == 'create_employees':
                 EmployeesService.create_employees()
+            elif execute_batch == 'truncate_employees':
+                EmployeesService.truncate_employees()
             elif execute_batch == 'create_scrapy_html':
                 ScrapyService.create_scrapy_html()
             elif execute_batch == 'parse_scrapy_html':
