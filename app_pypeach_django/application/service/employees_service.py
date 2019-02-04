@@ -1,4 +1,4 @@
-from django.db import transaction
+from django.db import transaction, connection
 from django.utils import timezone
 from django.utils.timezone import localtime
 
@@ -28,6 +28,15 @@ class EmployeesService(AppLogicBaseService):
         for emp_no in range(1, 7):
             if Employees.objects.filter(emp_no=emp_no, delete_flag=0).count() == 0:
                 service._regist_employees(emp_no)
+
+    @staticmethod
+    @transaction.atomic()
+    def truncate_employees():
+        """
+        employeesをトランケートする
+        """
+        cursor = connection.cursor()
+        cursor.execute('TRUNCATE TABLE {0}'.format(Employees._meta.db_table))
 
     def _regist_employees(self, emp_no):
         """
