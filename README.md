@@ -8,7 +8,7 @@ windows及びlinux(Ubuntu 18.04 LTS)で動作確認しています。
 
 |  項目 | バージョン |
 |:------------|:------------|
-| python | 3.6.7 |
+| python | 3.7.2 |
 | mysql | 5.6.40 |
 
 
@@ -59,6 +59,7 @@ python等のソフトウェアを適宜インストールしてください。
 | Vagrant(DNS設定)| 「[VagrantのゲストOSから名前解決できない件](https://saku.io/fix-dns-resolver-in-vagrant-vm/)」参照 |
 | python | 「[Python3.6.0をUbuntu16.04に導入する](https://qiita.com/Fendo181/items/912b65c4fcc3d701d53d)」参照 |
 | Jenkins | 「[Ubuntu 12.04にJenkinsをインストールしてApacheでポート80で動かす](http://madroom-project.blogspot.com/2012/12/ubuntu-1204jenkinsapache80.html)」参照 |
+| mysql(mysqlclient) | 「[【MySQL入門】PythonからMySQLを使ってみよう！mysqlclient利用編](https://www.sejuku.net/blog/82657)」参照 |
 
 ### モジュールのインストール
 pythonのモジュールはpipで適宜インストールを行います。
@@ -83,7 +84,7 @@ Django==2.1.5
 django-admin-tools==0.8.1
 django-bootstrap-form==3.4
 lxml==4.3.0
-mysqlclient==1.3.12
+mysqlclient==1.4.2
 pytz==2018.9
 PyYAML==3.12
 pytest==4.1.1
