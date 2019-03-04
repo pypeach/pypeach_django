@@ -60,7 +60,7 @@ python等のソフトウェアを適宜インストールしてください。
 | python | 「[Python3.6.0をUbuntu16.04に導入する](https://qiita.com/Fendo181/items/912b65c4fcc3d701d53d)」参照 |
 | Jenkins | 「[Ubuntu 12.04にJenkinsをインストールしてApacheでポート80で動かす](http://madroom-project.blogspot.com/2012/12/ubuntu-1204jenkinsapache80.html)」参照 |
 | mysql(mysqlclient) | 「[【MySQL入門】PythonからMySQLを使ってみよう！mysqlclient利用編](https://www.sejuku.net/blog/82657)」参照 |
-| virtualenv | 「[virtualenv 基本的なコマンド使い方メモ](https://qiita.com/th1209/items/84f21a4499548b34ec91)」参照 |
+| virtualenv | 「[venvを用いてプロジェクトごとに独立した環境を構築する](https://www.yoheim.net/blog.php?q=20171106)」参照 |
 
 ### モジュールのインストール
 pythonのモジュールはpipで適宜インストールを行います。
