@@ -1,6 +1,6 @@
 import logging
 
-from app_pypeach_django.application.helper.string_helper import StringHelper
+from app_pypeach_django.application.helper.string import StringHelper
 from app_pypeach_django.test.test_base import UnitTestBase
 
 """

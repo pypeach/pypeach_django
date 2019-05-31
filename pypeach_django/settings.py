@@ -159,12 +159,12 @@ LOGGING = {
     'loggers': {
         '': {
             'handlers': ['consoleHandler', 'fileRotatingHandler'],
-            'level': AppConfig.get_logging_level_config(),
+            'level': AppConfig.get_properties("app_log_level"),
             'propagate': False,
         },
         'django.db.backends': {
             'handlers': ['consoleHandler'],
-            'level': AppConfig.get_logging_level_config(),
+            'level': AppConfig.get_properties("sql_log_level"),
             'propagate': False,
         }
     }

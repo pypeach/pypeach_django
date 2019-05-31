@@ -5,6 +5,10 @@
 log_path: /home/pypeach/pypeach_django/log
 # ログファイル名
 log_file: pypeach_django.log
+# ログレベル(app)
+app_log_level: INFO
+# ログレベル(sql)
+sql_log_level: INFO
 
 ##################################################
 ## DB接続のプロパティ

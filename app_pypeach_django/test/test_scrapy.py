@@ -1,4 +1,4 @@
-from app_pypeach_django.application.helper.scrapy_helper import ScrapyHelper, HttpErrorException, ScrapyIllegalException
+from app_pypeach_django.application.helper.scrapy import ScrapyHelper, HttpErrorException, ScrapyIllegalException
 from app_pypeach_django.test.test_base import UnitTestBase
 
 """

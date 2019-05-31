@@ -1,6 +1,6 @@
 import logging
 
-from app_pypeach_django.application.helper.date_helper import DateHelper
+from app_pypeach_django.application.helper.date import DateHelper
 from app_pypeach_django.test.test_base import UnitTestBase
 
 """

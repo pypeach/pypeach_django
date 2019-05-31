@@ -5,9 +5,9 @@ from django.db import transaction
 from django.utils import timezone
 from django.utils.timezone import localtime
 
-from app_pypeach_django.application.helper.date_helper import DateHelper
-from app_pypeach_django.application.helper.scrapy_helper import ScrapyHelper
-from app_pypeach_django.application.service.app_logic_base_service import AppLogicBaseService
+from app_pypeach_django.application.helper.date import DateHelper
+from app_pypeach_django.application.helper.scrapy import ScrapyHelper
+from app_pypeach_django.application.service.app_logic_base import AppLogicBaseService
 from app_pypeach_django.models import ScrapyHtml
 
 """
