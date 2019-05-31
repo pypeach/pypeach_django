@@ -45,15 +45,3 @@ class AppConfig:
         if os.name == 'posix' or socket.gethostname() == 'example.com':
             application_config = "production"
         return application_config
-
-    @staticmethod
-    def get_logging_level_config():
-        """
-        OS情報やホスト名からログレベルを取得する
-        """
-        logging_level = "DEBUG"
-        # 実行環境に応じてログレベルを切り替える
-        if os.name == 'posix' or socket.gethostname() == 'example.com':
-            logging_level = "INFO"
-
-        return logging_level

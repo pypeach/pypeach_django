@@ -6,6 +6,11 @@ log_path: C:\work\30.mocjax\log\
 # ログファイル名
 log_file: pypeach_django.log
 
+# ログレベル(app)
+app_log_level: DEBUG
+# ログレベル(sql)
+sql_log_level: DEBUG
+
 ##################################################
 ## DB接続のプロパティ
 ##################################################
