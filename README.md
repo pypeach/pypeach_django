@@ -171,7 +171,7 @@ LANG=ja_JP.UTF-8
 export PYTHONPATH="$HOME/pypeach_django/"
 # testを実行する。DB定義を保持するため"--keepdb"のオプションを指定する
 python {プロジェクトのホーム}/manage.py test --keepdb {テストクラス}
-例）python /home/pypeach/pypeach_django/manage.py test --keepdb app_pypeach_django.test.test_date_helper
+例）python /home/pypeach/pypeach_django/manage.py test --keepdb app_pypeach_django.test.test_date
 
 # pytestを実行する(プロジェクトのホームで実行する)
 pytest --ds={プロジェクトの設定} --reuse-db --junitxml={テスト結果のxmlファイル名} {テスト対象パッケージ}
