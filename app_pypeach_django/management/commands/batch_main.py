@@ -5,8 +5,8 @@ from django.core.management.base import BaseCommand
 from django.db import ProgrammingError
 from django.utils.translation import gettext
 
-from app_pypeach_django.application.service.employees_service import EmployeesService
-from app_pypeach_django.application.service.scrapy_service import ScrapyService
+from app_pypeach_django.application.service.employees import EmployeesService
+from app_pypeach_django.application.service.scrapy import ScrapyService
 
 """
 BaseCommandを継承したバッチ起動クラスです。
