@@ -123,13 +123,3 @@ class EmployeesService(AppLogicBaseService):
         self.update_model.department_date_from = department_date_from
         self.update_model.update_dt = localtime(timezone.now())
         self.update_model.save(update_fields=['department_no', 'department_date_from', 'update_dt'])
-
-    def _update_employees(self, scrapy_race_html_id):
-        """
-        HTML情報を処理済にする
-        """
-        self.update_model = Employees()
-        self.update_model.pk = scrapy_race_html_id
-        self.update_model.update_dt = localtime(timezone.now())
-        self.update_model.delete_flag = 1
-        self.update_model.save(update_fields=['update_dt', 'delete_flag'])
