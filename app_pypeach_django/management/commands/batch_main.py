@@ -40,6 +40,10 @@ class Command(BaseCommand):
         try:
             if execute_batch == 'create_employees':
                 EmployeesService.create_employees()
+            elif execute_batch == 'create_departments':
+                EmployeesService.create_departments()
+            elif execute_batch == 'update_employees':
+                EmployeesService.update_employees()
             elif execute_batch == 'truncate_employees':
                 EmployeesService.truncate_employees()
             elif execute_batch == 'create_scrapy_html':
