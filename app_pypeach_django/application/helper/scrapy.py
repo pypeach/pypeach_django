@@ -59,6 +59,9 @@ class ScrapyHelper:
                     raise URLErrorException(gettext("E990") % url)
             except socket.timeout:
                 logging.info(gettext("I802"), url)
+            except ConnectionResetError as error:
+                # [Errno 104] Connection reset by peerを回避する
+                logging.info(gettext("I802"), url)
             except Exception as error:
                 logging.info(gettext("E991"), error)
                 raise ScrapyIllegalException(gettext("E990") % url)
