@@ -11,9 +11,9 @@ __date__ = "2 September 2019"
 
 
 class DepartmentType(Enum):
-    SALES = ('1', 'Sales', '営業')
-    MARKETING = ('2', 'Marketing', 'マーケティング')
-    PRODUCTION = ('3', 'Production', '商品開発')
+    SALES = ('100', 'Sales', '営業')
+    MARKETING = ('200', 'Marketing', 'マーケティング')
+    PRODUCTION = ('300', 'Production', '商品開発')
 
     def __new__(cls, value, en_name, jp_name):
         obj = object.__new__(cls)
