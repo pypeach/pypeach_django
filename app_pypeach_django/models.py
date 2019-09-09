@@ -1,9 +1,21 @@
 from django.db import models
 
 
+class Departments(models.Model):
+    department_no = models.IntegerField('部署番号')
+    department_name = models.CharField('部署名', max_length=30)
+    delete_flag = models.IntegerField('削除フラグ')
+    regist_dt = models.DateTimeField('登録日時', auto_now_add=True)
+    update_dt = models.DateTimeField('更新日時', auto_now_add=True)
+
+    class Meta:
+        db_table = 'departments'
+        verbose_name = '配属情報'
+
+
 class Employees(models.Model):
     emp_no = models.IntegerField('社員番号')
-    department_no = models.IntegerField('部署')
+    department = models.ForeignKey(Departments, on_delete=models.CASCADE)
     first_name = models.CharField('姓', max_length=30)
     last_name = models.CharField('名', max_length=30)
     gender = models.IntegerField('性別')
@@ -19,18 +31,6 @@ class Employees(models.Model):
         db_table = 'employees'
         verbose_name = '社員情報'
         unique_together = ('emp_no',)
-
-
-class Departments(models.Model):
-    department_no = models.IntegerField('部署番号')
-    department_name = models.CharField('部署名', max_length=30)
-    delete_flag = models.IntegerField('削除フラグ')
-    regist_dt = models.DateTimeField('登録日時', auto_now_add=True)
-    update_dt = models.DateTimeField('更新日時', auto_now_add=True)
-
-    class Meta:
-        db_table = 'departments'
-        verbose_name = '配属情報'
 
 
 class ScrapyHtml(models.Model):

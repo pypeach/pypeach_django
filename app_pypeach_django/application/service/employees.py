@@ -1,3 +1,5 @@
+import logging
+
 from django.db import transaction, connection
 from django.utils import timezone
 from django.utils.timezone import localtime
@@ -33,9 +35,9 @@ class EmployeesService(AppLogicBaseService):
                     department_no = DepartmentType.SALES.value
                 else:
                     department_no = DepartmentType.MARKETING.value
-
+                select_model = Departments.objects.filter(department_no=department_no).values("id").first()
                 # データを登録する
-                service._regist_employees(department_no, emp_no)
+                service._regist_employees(select_model['id'], emp_no)
 
     @staticmethod
     @transaction.atomic()
@@ -44,6 +46,10 @@ class EmployeesService(AppLogicBaseService):
         Departmentsを作成する
         """
         service = EmployeesService()
+
+        # データをすべて削除する
+        # ForeignKeyが指定されているためdeleteコマンドを実行する
+        Departments.objects.all().delete()
 
         for department_type in DepartmentType:
             department_no = department_type.value
@@ -61,21 +67,58 @@ class EmployeesService(AppLogicBaseService):
 
         # filterによる絞込を行う
         # gt:...より大きい(>),lt:...より小さい(<)になる
-        for item_employees in Employees.objects.filter(emp_no__gt=1, emp_no__lt=3, delete_flag=0):
-            employees_id = item_employees.id
-            department_no = DepartmentType.PRODUCTION.value
+        for employees_item in Employees.objects.filter(emp_no__gt=1, emp_no__lt=3, delete_flag=0):
+            employees_id = employees_item.id
+            select_model = Departments.objects.filter(department_no=DepartmentType.PRODUCTION.value).values(
+                "id").first()
+            department_id = select_model['id']
             department_date_from = 20190903
             # データを更新する
-            service._update_employees_department(employees_id, department_no, department_date_from)
+            service._update_employees_department(employees_id, department_id, department_date_from)
 
         # filterによる絞込を行う
         # gte:...以上(>=),lte:...以下(<=)になる
-        for item_employees in Employees.objects.filter(emp_no__gte=7, emp_no__lte=9, delete_flag=0):
-            employees_id = item_employees.id
-            department_no = DepartmentType.SALES.value
+        for employees_item in Employees.objects.filter(emp_no__gte=7, emp_no__lte=9, delete_flag=0):
+            employees_id = employees_item.id
+            select_model = Departments.objects.filter(department_no=DepartmentType.SALES.value).values("id").first()
+            department_id = select_model['id']
             department_date_from = 20190905
             # データを更新する
-            service._update_employees_department(employees_id, department_no, department_date_from)
+            service._update_employees_department(employees_id, department_id, department_date_from)
+
+    @staticmethod
+    def select_employees():
+        """
+        Employeesを検索する
+        """
+        # テーブル名__項目名で指定するとINNER JOINになる
+        # Queryは参照先のテーブルを参照する度に発行されます
+        for employees_item in Employees.objects.filter(department__department_no=DepartmentType.SALES.value,
+                                                       delete_flag=0):
+            logging.debug("reference:emp_no={}".format(employees_item.emp_no))
+            logging.debug("reference:department_no={}".format(employees_item.department.department_no))
+            logging.debug("reference:department_name={}".format(employees_item.department.department_name))
+            logging.debug("reference:first_name={}".format(employees_item.first_name))
+            logging.debug("reference:last_name={}".format(employees_item.last_name))
+
+        # select_relatedを使用した参照先情報を取得してキャッシュします
+        # Queryは1回のみ発行されます
+        for employees_item in Employees.objects.filter(emp_no__gte=7, delete_flag=0).select_related("department"):
+            logging.debug("select_related:emp_no={}".format(employees_item.emp_no))
+            logging.debug("select_related:first_name={}".format(employees_item.first_name))
+            logging.debug("select_related:last_name={}".format(employees_item.last_name))
+            logging.debug("select_related:department_no={}".format(employees_item.department.department_no))
+            logging.debug("select_related:department_name={}".format(employees_item.department.department_name))
+
+        # prefetch_relatedを使用した参照先情報を取得してキャッシュします
+        # Queryは2回発行されてForeignKeyで結合します
+        for employees_item in Employees.objects.filter(emp_no__gte=7, delete_flag=0).prefetch_related(
+                "department__employees_set"):
+            logging.debug("prefetch_related:emp_no={}".format(employees_item.emp_no))
+            logging.debug("prefetch_related:first_name={}".format(employees_item.first_name))
+            logging.debug("prefetch_related:last_name={}".format(employees_item.last_name))
+            logging.debug("prefetch_related:department_no={}".format(employees_item.department.department_no))
+            logging.debug("prefetch_related:department_name={}".format(employees_item.department.department_name))
 
     @staticmethod
     @transaction.atomic()
@@ -86,13 +129,15 @@ class EmployeesService(AppLogicBaseService):
         cursor = connection.cursor()
         cursor.execute('TRUNCATE TABLE {0}'.format(Employees._meta.db_table))
 
-    def _regist_employees(self, department_no, emp_no):
+    def _regist_employees(self, department_id, emp_no):
         """
         employeesを登録する
         """
         self.regist_model = Employees()
         self.regist_model.emp_no = emp_no
-        self.regist_model.department_no = department_no
+        self.regist_model.department_id = department_id
+        self.regist_model.first_name = "first_name_" + str(emp_no).zfill(3)
+        self.regist_model.last_name = "last_name_" + str(emp_no).zfill(3)
         self.regist_model.gender = GenderType.MAN.value
         self.regist_model.department_date_from = "20190902"
         self.regist_model.delete_flag = 0
@@ -113,13 +158,13 @@ class EmployeesService(AppLogicBaseService):
         self.regist_model.update_dt = localtime(timezone.now())
         self.regist_model.save()
 
-    def _update_employees_department(self, employees_id, department_no, department_date_from):
+    def _update_employees_department(self, employees_id, department_id, department_date_from):
         """
         配属情報を更新する
         """
         self.update_model = Employees()
         self.update_model.pk = employees_id
-        self.update_model.department_no = department_no
+        self.update_model.department_id = department_id
         self.update_model.department_date_from = department_date_from
         self.update_model.update_dt = localtime(timezone.now())
-        self.update_model.save(update_fields=['department_no', 'department_date_from', 'update_dt'])
+        self.update_model.save(update_fields=['department_id', 'department_date_from', 'update_dt'])
