@@ -31,22 +31,28 @@ class ScrapyHelper:
              'Chrome/55.0.2883.95 Safari/537.36 '
         # アクセスのリトライ回数を指定する
         retry_max_count = AppConfig.get_properties("url_request_retry_max_count")
-        retry_count = 1
         response_html = None
         for i in range(0, retry_max_count):
-            retry_count += 1
             try:
                 # Webアクセス時のUser-Agentを指定する
+                logging.debug("request settings")
                 req = urllib.request.Request(url, headers={'User-Agent': ua})
                 # Webアクセスの読み込みを行う
+                logging.debug("request read start")
                 with urllib.request.urlopen(req, timeout=AppConfig.get_properties("url_request_read_timeout")) as f:
                     html = f.read().decode('utf-8')
+                logging.debug("request read end")
 
                 # レスポンスをHTMLパーサーでパースする
+                logging.debug("request parse start")
                 if parse_flag is True:
                     response_html = BeautifulSoup(html, 'lxml')
                 else:
                     response_html = html
+                logging.debug("request parse end")
+
+                if response_html is not None and len(response_html) > 0:
+                    break
             except HTTPError as e:
                 # HTTPError時のメッセージを出力する
                 logging.info(gettext("I801"), url, e.code, e.msg)
