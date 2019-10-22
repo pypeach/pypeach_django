@@ -64,7 +64,6 @@ python等のソフトウェアを適宜インストールしてください。
 
 ### モジュールのインストール
 pythonのモジュールはpipで適宜インストールを行います。
-
 |  モジュール | 用途 |
 |:------------|:------------|
 | Django | フレームワーク |
@@ -73,27 +72,12 @@ pythonのモジュールはpipで適宜インストールを行います。
 | pytest | unittest |
 | beautiful soup | Webスクレイピング |
 
-
 テキスト(freezeで作成)を使用して以下のコマンドでインストールできます。
+[requirements.txt](https://github.com/pypeach/pypeach_django/blob/master/requirements.txt)はgitに公開しています。
+
 ```
 # pipコマンドを実行する
 pip install -r requirements.txt
-
-# requirements.txtは以下になります
-beautifulsoup4==4.6.0
-Django==2.1.5
-django-admin-tools==0.8.1
-django-bootstrap-form==3.4
-lxml==4.3.0
-mysqlclient==1.4.2
-pytz==2018.9
-PyYAML==3.12
-pytest==4.1.1
-pytest-cov==2.6.1
-pytest-django==3.4.5
-
-# 仮想環境を使用する場合はvenvコマンドで作成します
-python -m venv {任意の名称}
 ```
 
 ### DB作成
