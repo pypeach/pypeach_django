@@ -73,11 +73,31 @@ pythonのモジュールはpipで適宜インストールを行います。
 | beautiful soup | Webスクレイピング |
 
 テキスト(freezeで作成)を使用して以下のコマンドでインストールできます。
-[requirements.txt](https://github.com/pypeach/pypeach_django/blob/master/requirements.txt)はgitに公開しています。
-
 ```
 # pipコマンドを実行する
 pip install -r requirements.txt
+
+# requirements.txtの内容は以下になります
+atomicwrites==1.2.1
+attrs==18.2.0
+beautifulsoup4==4.6.0
+coverage==4.5.2
+Django==2.1.5
+django-admin-tools==0.8.1
+django-bootstrap-form==3.4
+lxml==4.3.0
+more-itertools==5.0.0
+mysqlclient==1.4.2
+pluggy==0.8.1
+py==1.7.0
+pytest==4.1.1
+pytest-cov==2.6.1
+pytest-django==3.4.5
+pytz==2018.9
+PyYAML==3.12
+six==1.12.0
+unittest-xml-reporting==2.2.1
+
 ```
 
 ### DB作成
