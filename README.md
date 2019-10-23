@@ -45,7 +45,7 @@ djangoプロジェクトのデフォルトに設定ファイル関連のディ�
 
 ## セットアップ
 サンプルアプリケーションのセットアップを行います。 
-ansibleを使用したセットアップは[Gitリポジトリ](https://github.com/pypeach/pypeach_playbook.git)を参照ください。
+Ansibleを使用したセットアップは[Gitリポジトリ](https://github.com/pypeach/pypeach_playbook.git)を参照ください。
 
 ### Gitリポジトリのクローン
 サンプルアプリケーションは[Gitリポジトリ](https://github.com/pypeach/pypeach_django.git)からクローンしてください。  
