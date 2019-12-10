@@ -88,7 +88,7 @@ django-admin-tools==0.8.1
 django-bootstrap-form==3.4
 lxml==4.3.0
 more-itertools==5.0.0
-mysqlclient==1.4.2
+mysqlclient==1.4.6
 pluggy==0.8.1
 py==1.7.0
 pytest==4.1.1
