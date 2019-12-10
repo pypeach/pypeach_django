@@ -8,7 +8,7 @@ windows及びlinux(Ubuntu 18.04 LTS)で動作確認しています。
 
 |  項目 | バージョン |
 |:------------|:------------|
-| python | 3.7.3 |
+| python | 3.7.2 |
 | mysql | 5.7.27 |
 
 
@@ -88,7 +88,7 @@ django-admin-tools==0.8.1
 django-bootstrap-form==3.4
 lxml==4.3.0
 more-itertools==5.0.0
-mysqlclient==1.4.2
+mysqlclient==1.4.6
 pluggy==0.8.1
 py==1.7.0
 pytest==4.1.1
